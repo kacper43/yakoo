@@ -1,0 +1,79 @@
+.slideshow {
+  position: relative;
+  height: 92vh;
+  background-image: url(../../../assets/focus.jpg);
+  background-position: left center;
+  background-size: cover;
+  width: 100%;
+  margin: 8vh 0;
+  padding: 1em 3em;
+  box-sizing: border-box;
+
+  .header-text {
+    text-align: center;
+    color: white;
+    font-size: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .title {
+      display: block;
+      font-size: 3em;
+      font-family: 'Ubuntu Condensed', sans-serif;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .scroll-down-text {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    animation: pulse 2s infinite;
+    transition: 1s all ease-in-out;
+    opacity: 0;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes hide {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .header-text {
+      width: 80%;
+      font-size: 1em;
+    }
+  }
+  .darken {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    filter: opacity(90%);
+  }
+}

@@ -1,0 +1,15 @@
+<div class="container">
+  <h3>NAJNOWSZE OFERTY</h3>
+  <div class="offers">
+    <div class="car" *ngFor="let car of cars">
+      <div class="img-container">
+        <img src={{car.imageUrl}} alt="">
+      </div>
+      <div class="car-info">
+        <div class="car-model">{{car.brand}} {{car.model}}</div>
+        <div>{{car.year}} | {{car.course}} km | {{car.type}}</div>
+        <div class="car-price">{{car.price}} zł</div>
+      </div>
+    </div>
+  </div>
+</div>
