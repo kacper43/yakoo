@@ -1,0 +1,139 @@
+<div class="container">
+  <form [formGroup]="carForm">
+    <h3>Dodaj nowy samochód</h3>
+    <mat-form-field appearance="outline">
+      <mat-label>Marka</mat-label>
+      <input type="text"
+           placeholder="Wpisz nazwę marki"
+           value=""
+           matInput
+           formControlName="brand"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredBrands | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Model</mat-label>
+      <input type="text"
+           placeholder="Wpisz nazwę modelu"
+           value=""
+           matInput
+           formControlName="model"
+           [matAutocomplete]="autoModel">
+    <mat-autocomplete #autoModel="matAutocomplete">
+      <mat-option *ngFor="let option of filteredModels | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Rocznik</mat-label>
+      <mat-select formControlName="year">
+        <mat-option *ngFor="let year of years" [value]="year">
+          {{year}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+<br>
+    <mat-form-field appearance="outline">
+      <mat-label>Rodzaj paliwa</mat-label>
+      <mat-select formControlName="fuelType">
+        <mat-option *ngFor="let fuel of fuelTypes" [value]="fuel">
+          {{fuel}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Moc [KM]</mat-label>
+      <input type="text" value="" matInput formControlName="horsePower">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Przebieg [km]</mat-label>
+      <input type="text" value="" matInput formControlName="odometer">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Pojemność [ccm]</mat-label>
+      <input type="text" value="" matInput formControlName="engine">
+    </mat-form-field>
+<br>
+    <mat-form-field appearance="outline">
+      <mat-label>Typ nadwozia</mat-label>
+      <mat-select formControlName="bodyType">
+        <mat-option *ngFor="let type of bodyTypes" [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Ilość drzwi</mat-label>
+      <input type="text" value="" matInput formControlName="doorCount">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Skrzynia biegów</mat-label>
+      <mat-select formControlName="gearbox">
+        <mat-option *ngFor="let gearbox of gearboxTypes" [value]="gearbox">
+          {{gearbox}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+<br>
+<mat-form-field class="example-chip-list">
+  <mat-label>Wyposażenie</mat-label>
+  <mat-chip-list #chipList aria-label="Equipment selection">
+    <mat-chip
+      *ngFor="let eq of equipment"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(eq)">
+      {{eq}}
+      <mat-icon matChipRemove *ngIf="removable"><i class="far fa-times-circle"></i></mat-icon>
+    </mat-chip>
+    <input
+      placeholder="Wybierz lub wpisz element wyposażenia i zatwierdź klawiszem ENTER..."
+      #equipmentInput
+      [formControl]="equipmentCtrl"
+      [matAutocomplete]="autoEq"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #autoEq="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let equ of filteredEquipment | async" [value]="equ">
+      {{equ}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<br>
+<mat-form-field class="example-full-width">
+  <mat-label>Opis samochodu</mat-label>
+  <textarea rows="8" matInput formControlName="description" placeholder="Dodaj opis..."></textarea>
+</mat-form-field>
+
+
+
+
+
+  </form>
+
+  <h3>Dodawanie zdjęć:</h3>
+  <input id="file-button" type="file" name="fileinput" accept="image/*" (change)="upload($event)" multiple>
+  <label class="file-button-label" for="file" (click)="showUploadPopup()">Wybierz zdjęcia</label>
+  <br>
+  <br>
+  <div *ngIf="imagesCount > 0">
+    <img *ngFor="let image of url, index as i" src={{image}} alt="" class="image-preview" id="image-{{i}}" (click)="setMainImage(i)">
+  </div>
+  <button mat-raised-button color="primary" (click)="setNewCar()" [disabled]="this.filesHolder.length === 0 || this.carForm.invalid">Dodaj samochód</button>
+
+</div>
+<button (click)="logModels()">models</button>

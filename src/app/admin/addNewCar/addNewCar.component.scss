@@ -1,0 +1,49 @@
+.container {
+  font-family: 'Ubuntu Condensed', sans-serif;
+  padding: 1.5em 3em;
+  max-width: 900px;
+
+  input[type="file" i]{
+    font-family: 'Ubuntu Condensed', sans-serif;
+  }
+}
+
+img {
+  margin: 1em 0.5em;
+  box-sizing: border-box;
+  height: 150px;
+  cursor: pointer;
+
+}
+
+.main-image {
+  outline: 3px solid #a70101;
+  box-sizing: border-box;
+
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-button-label {
+  color: white;
+  background: #a70101;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  border-radius: 0.3em;
+
+
+}
+.file-button-label:hover {
+  background: #bb3333;
+}
+
+.example-chip-list {
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}

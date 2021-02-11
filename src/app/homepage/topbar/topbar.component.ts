@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CarsService } from 'src/app/services/cars.service';
 
 @Component({
   selector: 'app-topbar',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private carsService: CarsService) { }
 
   ngOnInit() {
+
   }
 
   showSideMenu() {

@@ -1,0 +1,20 @@
+export interface Car {
+  firebaseId: string,
+  year: number,
+  brand: string,
+  model: string,
+  fuelType: string,
+  horsePower: number,
+  odometer: number,
+  engine: number,
+  bodyType?: string,
+  doorCount: number,
+  gearbox: string,
+  price: number,
+  isArchived: boolean,
+  status: string,
+  equipment?: string[],
+  description?: string,
+  mainImgUrl?: string,
+  timestamp?: Date;
+}
