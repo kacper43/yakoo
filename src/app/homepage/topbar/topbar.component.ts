@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CarsService } from 'src/app/services/cars.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { CarsService } from 'src/app/services/cars.service';
 })
 export class TopbarComponent implements OnInit {
 
+  @Input() homepage;
   constructor(private carsService: CarsService) { }
 
   ngOnInit() {

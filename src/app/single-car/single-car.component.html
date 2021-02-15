@@ -1,3 +1,25 @@
-<p>
-  {{id}}
-</p>
+<app-topbar [homepage]="homepage"></app-topbar>
+<div class="container">
+  <div class="head-section">
+    <div class="info">
+      <div class="title">{{car.brand}} {{car.model}}</div>
+      <div class="price">{{car.price}} zł</div>
+      <div class="flex-2-rows">  
+        <div><span>Rocznik: {{car.year}}</span></div>
+        <div><span>Przebieg: {{car.odometer}} km</span></div>
+        <div><span>Pojemność: {{car.engine}} cm<sup>3</sup></span></div>
+        <div><span>Moc: {{car.horsePower}} KM</span></div>
+        <div><span>Rodzaj paliwa: {{car.fuelType}}</span></div>
+        <div><span>Skrzynia biegów: {{car.gearbox}}</span></div>
+        <div><span>Typ nadwozia: {{car.bodyType}}</span></div>
+        <div><span>Liczba drzwi: {{car.doorCount}}</span></div>
+      </div>
+    </div>
+
+
+    <ngx-gallery class="gallery" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+  </div>
+  <div class="equipment">
+    costam
+  </div>
+</div>

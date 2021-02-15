@@ -5,6 +5,7 @@ import { NewOffersComponent } from './homepage/new-offers/new-offers.component';
 import { AddNewCarComponent } from './admin/addNewCar/addNewCar.component';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
+import { NgxGalleryModule } from 'ngx-gallery-9';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -44,7 +45,8 @@ import { SingleCarComponent } from './single-car/single-car.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxGalleryModule
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]

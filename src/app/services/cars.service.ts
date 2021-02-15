@@ -76,6 +76,7 @@ export class CarsService {
 
         this.storage.upload(path, this.files[this.lastImageIndex]).snapshotChanges().pipe(
           finalize( () => {
+            debugger;
             fileRef.getDownloadURL().subscribe( (url) => {
               let docRef = this.database.collection('imagesURLs').doc(this.databaseID.toString());
               docRef.get().toPromise().then(docSnapshot => {
@@ -99,6 +100,10 @@ export class CarsService {
                   console.log('Created imges urls folder, added new image url');
                   this.toastr.success("Utworzono nową kolekcję", "na serwerze");
                   this.toastr.success("Pozostałe zdjęcia: " + this.lastImageIndex, "Zdjęcie wysłane");
+                  if(this.lastImageIndex === this.mainImageIndex) {
+                    this.newCar.mainImgUrl = url;
+                    console.log(url);
+                  }
                   this.lastImageIndex--;
                   if(this.lastImageIndex >= 0) {
                     this.startImagesUpload();
@@ -122,7 +127,7 @@ export class CarsService {
     this.toastr.info('do nowego ogłoszenia', 'Za 5 sekund zostaniesz przeniesiony');
 
     setTimeout( () => {
-      this.router.navigate(['/car' + this.databaseID]);
+      this.router.navigate(['/car/' + this.databaseID]);
     }, 5000);
 
 
@@ -181,7 +186,7 @@ export class CarsService {
     return this.modelsUpdated.asObservable();
   }
 
-  gerCarsFromServer() {
+  getCarsFromServer() {
     let data = [];
     this.database.collection('cars', ref => ref.orderBy('timestamp', 'desc')).get().toPromise().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -189,6 +194,21 @@ export class CarsService {
       })
     })
     console.log(data);
+  }
+
+  getFiniteCarsFromServer(count: number): Observable<Car[]>{
+    let cars = new Subject<Car[]>();
+    let carsObs = cars.asObservable();
+    let data = [];
+    this.database.collection('cars', ref => ref.orderBy('timestamp', 'desc').limit(count)).get().toPromise().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        data.push(doc.data());
+        cars.next(data);
+      })
+    })
+
+    return carsObs;
+
   }
 
 }
