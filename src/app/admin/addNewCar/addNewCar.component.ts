@@ -8,6 +8,7 @@ import { CarsService } from 'src/app/services/cars.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
+import {CdkDragDrop, CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-addNewCar',
@@ -151,6 +152,14 @@ export class AddNewCarComponent implements OnInit {
     }
   }
 
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.url, event.previousIndex, event.currentIndex);
+  }
+  
+  entered(event: CdkDragEnter) {
+    moveItemInArray(this.url, event.item.data, event.container.data);
+  }
+  
   selected(event: MatAutocompleteSelectedEvent): void {
     this.equipment.push(event.option.viewValue);
     this.equipmentInput.nativeElement.value = '';

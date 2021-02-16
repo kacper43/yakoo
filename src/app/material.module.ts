@@ -6,6 +6,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatAutocompleteModule,
     MatSelectModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    DragDropModule
   ],
   exports: [
     MatButtonModule,
@@ -24,7 +26,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatAutocompleteModule,
     MatSelectModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    DragDropModule
 
   ]
 })

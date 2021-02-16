@@ -136,7 +136,13 @@
   <br>
   <br>
   <div *ngIf="imagesCount > 0">
-    <img *ngFor="let image of url, index as i" src={{image}} alt="" class="image-preview" id="image-{{i}}" (click)="setMainImage(i)">
+    <div style="display:flex;flex-wrap:wrap" cdkDropListGroup>
+      <div style="height: 150px" cdkDropList [cdkDropListData]="i" *ngFor="let photo of url; let i = index;">
+        <div cdkDrag [cdkDragData]="i" (cdkDragEntered)="entered($event)">
+          <img src={{photo}} alt="" class="image-preview" id="image-{{i}}" (click)="setMainImage(i)">
+        </div>
+      </div>
+    </div>
   </div>
   <button mat-raised-button color="primary" (click)="setNewCar()" [disabled]="this.filesHolder.length === 0 || this.carForm.invalid">Dodaj samochód</button>
 
