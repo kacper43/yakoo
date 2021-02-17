@@ -47,6 +47,7 @@ export class SingleCarComponent implements OnInit {
     });
     this.photosSubscription = this.showCarService.getCarPhotos(this.id).subscribe((photosUrls) => {
       this.photos = photosUrls;
+      console.log(this.photos[0]);
       for(let i=0; i<this.photos.length; i++) {
         this.galleryImages[i] = {
           small: this.photos[i],

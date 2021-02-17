@@ -8,7 +8,7 @@ import { CarsService } from 'src/app/services/cars.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
-import {CdkDragDrop, CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, CdkDragEnter, CdkDropList, CdkDropListGroup, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-addNewCar',
@@ -74,10 +74,19 @@ export class AddNewCarComponent implements OnInit {
   @ViewChild('autoEq') matAutocomplete: MatAutocomplete;
   // chips end
 
+  @ViewChild(CdkDropListGroup) listGroup: CdkDropListGroup<CdkDropList>;
+  @ViewChild(CdkDropList) placeholder: CdkDropList;
+  public target: CdkDropList;
+  public targetIndex: number;
+  public source: any;
+  public sourceIndex: number;
+
   constructor(private carsService: CarsService, private toastr: ToastrService, private formBuilder: FormBuilder) {
     this.filteredEquipment = this.equipmentCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allEquipment.slice()));
+    this.target = null;
+    this.source = null;
   }
 
   ngOnInit() {
@@ -152,14 +161,7 @@ export class AddNewCarComponent implements OnInit {
     }
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.url, event.previousIndex, event.currentIndex);
-  }
-  
-  entered(event: CdkDragEnter) {
-    moveItemInArray(this.url, event.item.data, event.container.data);
-  }
-  
+
   selected(event: MatAutocompleteSelectedEvent): void {
     this.equipment.push(event.option.viewValue);
     this.equipmentInput.nativeElement.value = '';
@@ -203,9 +205,15 @@ export class AddNewCarComponent implements OnInit {
   }
 
 
-  url: string[] = [];
+  urls: string[] = [];
   imagesCount: number = 0;
   filesHolder: File[] = [];
+  items=[0,1,2,3,4,5,6,7,8,9,10,11];
+
+  drop(event: CdkDragDrop<any>) {
+    this.urls[event.previousContainer.data.index]=event.container.data.item
+    this.urls[event.container.data.index]=event.previousContainer.data.item
+  }
 
   upload($event: any){
     this.carsService.setFilesArray($event.target.files);
@@ -216,7 +224,7 @@ export class AddNewCarComponent implements OnInit {
         let reader = new FileReader();
         reader.readAsDataURL(this.filesHolder[i]);
         reader.onload = ( event:any ) => {
-        this.url[i] = event.target.result;
+        this.urls[i] = event.target.result;
         }
       }
     }
