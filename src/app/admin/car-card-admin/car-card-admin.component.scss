@@ -61,6 +61,17 @@ $color-darkred: #8d0202;
     background-color: darkred;
   }
 
+  .archived {
+      color: white;
+      background-color: black;
+      transform: translateY(-100%);
+  }
+
+  .active {
+    color: white;
+    background-color: green;
+    transform: translateY(-100%);
+}
   .car-info {
     padding: 1em;
     background: $color-white;

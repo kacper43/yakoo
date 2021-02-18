@@ -1,5 +1,5 @@
 export interface Car {
-  firebaseId: string,
+  firebaseId?: string,
   year: number,
   brand: string,
   model: string,

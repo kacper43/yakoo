@@ -18,61 +18,12 @@ export class NewOffersComponent implements OnInit {
 
 cars: Car[] = [];
 carsSub: Subscription;
-  // files: File[] = [];
-  // task: AngularFireUploadTask | undefined;
-  // snapshot: Observable<any> | undefined;
-  // uploadProgress: Observable<number>[] = [];
-  // downloadUrl!: Observable<string>;
-  // id: String = '';
+showSpinner = true;
 
   ngOnInit() {
     this.carsSub = this.carsService.getFiniteCarsFromServer(3).subscribe((carsArray: Car[]) => {
       this.cars = carsArray;
+      this.showSpinner = false;
     })
-    
-    //this.id = this.database.createId();
   }
-
-
-//index: number = 0;
-
-
-  // ref!: AngularFireStorageReference;
-  // uploadTask!: AngularFireUploadTask;
-
-
-  // uploadImage(image: File){
-
-  //     const path = `images/${this.id}/${this.index}`;
-  //     const fileRef = this.storage.ref(path);
-
-  //     this.storage.upload(path, this.files[this.index]).snapshotChanges().pipe(
-  //       finalize( () => {
-  //         fileRef.getDownloadURL().subscribe( (url) => {
-  //           let docRef = this.database.collection('imagesURLs').doc(this.id.toString());
-  //           docRef.get().toPromise().then(docSnapshot => {
-  //             if(docSnapshot.exists){
-  //               docRef.update({[this.index]: url});
-  //               console.log('added new image url');
-  //               this.index--;
-  //               if(this.index >= 0) {
-  //                 this.uploadImagesButton();
-  //               }
-  //             } else {
-  //               docRef.set({[this.index]: url});
-  //               console.log('Created imges urls folder, added new image url');
-  //               this.index--;
-  //               if(this.index >= 0) {
-  //                 this.uploadImagesButton();
-  //               }
-  //             }
-  //           })
-
-  //         })
-  //       })
-  //     ).subscribe();
-
-  // }
-
-
 }

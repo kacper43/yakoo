@@ -1,3 +1,5 @@
+import { CarCardAdminComponent } from './admin/car-card-admin/car-card-admin.component';
+import { ShowAllCarsComponent } from './admin/show-all-cars/show-all-cars.component';
 import { SlideshowComponent } from './homepage/slideshow/slideshow.component';
 import { TopbarComponent } from './homepage/topbar/topbar.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,9 +24,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleCarComponent } from './single-car/single-car.component';
 import { CarCardComponent } from './car-card/car-card.component';
 import { AllCarsComponent } from './all-cars/all-cars.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
     TopbarComponent,
     SlideshowComponent,
@@ -33,7 +36,10 @@ import { AllCarsComponent } from './all-cars/all-cars.component';
     HomepageMainComponent,
       SingleCarComponent,
       CarCardComponent,
-      AllCarsComponent
+      AllCarsComponent,
+      SpinnerComponent,
+      ShowAllCarsComponent,
+      CarCardAdminComponent,
    ],
   imports: [
     BrowserModule,

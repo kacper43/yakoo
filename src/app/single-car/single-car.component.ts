@@ -36,6 +36,9 @@ export class SingleCarComponent implements OnInit {
   };
   photos: string[];
   homepage = false;
+  showSpinner = true;
+  showImagesSpinner = true;
+
   constructor(private showCarService: ShowSingleCarService,
               private route: ActivatedRoute,
               private database: AngularFirestore) { }
@@ -44,6 +47,7 @@ export class SingleCarComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.carSubscription = this.showCarService.getCar(this.id).subscribe((fetchedCar) => {
       this.car = fetchedCar;
+      this.showSpinner = false;
     });
     this.photosSubscription = this.showCarService.getCarPhotos(this.id).subscribe((photosUrls) => {
       this.photos = photosUrls;
@@ -55,6 +59,7 @@ export class SingleCarComponent implements OnInit {
           big: this.photos[i]
         }
       }
+      this.showImagesSpinner = false;
     })
 
     this.galleryOptions = [

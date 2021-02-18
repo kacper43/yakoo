@@ -15,13 +15,27 @@ export class AllCarsComponent implements OnInit {
 
   cars: Car[] = [];
   carsSub: Subscription;
-
+  filterType = 'timestamp';
+  filterDirection = 'desc';
+  showSpinner = true;
 
     ngOnInit() {
-      this.carsSub = this.carsService.getCarsFromServer().subscribe((carsArray: Car[]) => {
+      this.carsSub = this.carsService.getCarsFromServer(this.filterType, this.filterDirection).subscribe((carsArray: Car[]) => {
         this.cars = carsArray;
-        console.log(this.cars);
+        this.showSpinner = false;
+        //console.log(this.cars);
       })
 
+    }
+
+    filterChanged() {
+      this.showSpinner = true;
+      console.log(this.filterType);
+      this.carsSub.unsubscribe();
+      this.carsSub = this.carsService.getCarsFromServer(this.filterType, this.filterDirection).subscribe((carsArray: Car[]) => {
+        this.cars = carsArray;
+        this.showSpinner = false;
+        //console.log(this.cars);
+      })
     }
 }

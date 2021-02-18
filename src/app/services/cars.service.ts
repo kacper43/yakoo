@@ -185,20 +185,57 @@ export class CarsService {
     return this.modelsUpdated.asObservable();
   }
 
-  getCarsFromServer() {
+  getCarsFromServer(orderType: string, orderDirection: string): Observable<Car[]>{
     let data = [];
     let allCars = new Subject<Car[]>();
     let allCarsObs = allCars.asObservable();
-    this.database.collection('cars', ref => ref.where('isArchived', '==', false).orderBy('timestamp', 'desc')).get().toPromise().then((querySnapshot) => {
+    switch(orderDirection) {
+      case 'desc':
+        this.database.collection('cars', ref => ref.where('isArchived', '==', false).orderBy(orderType, 'desc')).get().toPromise().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            data.push(doc.data());
+            allCars.next(data);
+            console.log(data);
+    
+          })
+        })
+        return allCarsObs;
+        break;
+      case 'asc':
+        this.database.collection('cars', ref => ref.where('isArchived', '==', false).orderBy(orderType, 'asc')).get().toPromise().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            data.push(doc.data());
+            allCars.next(data);
+            console.log(data);
+    
+          })
+        })
+        return allCarsObs;
+        break;
+      default: 
+        console.error("Nie można zastosować filtru");
+        return allCarsObs;
+    }
+    
+  }
+
+  getCarsFromServerAdmin(): Observable<Car[]> {
+    let data = [];
+    let allCars = new Subject<Car[]>();
+    let allCarsObs = allCars.asObservable();
+
+    this.database.collection('cars', ref => ref.orderBy('timestamp', 'desc')).get().toPromise().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         data.push(doc.data());
         allCars.next(data);
-        console.log(data);
 
       })
     })
     return allCarsObs;
+
   }
+
+
   getFiniteCarsFromServer(count: number): Observable<Car[]>{
     let cars = new Subject<Car[]>();
     let carsObs = cars.asObservable();

@@ -1,8 +1,7 @@
 <div class="container">
-  <h3>NAJNOWSZE OFERTY</h3>
+  <h3>OFERTY</h3>
   <div class="offers">
     <app-spinner *ngIf="showSpinner"></app-spinner>
-    <app-car-card *ngFor="let car of cars" [car]="car"></app-car-card>
+    <app-car-card-admin *ngFor="let car of cars" [car]="car"></app-car-card-admin>
   </div>
 </div>
-
