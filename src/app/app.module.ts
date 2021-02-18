@@ -20,16 +20,20 @@ import { HomepageMainComponent } from './homepage/homepage-main/homepage-main.co
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleCarComponent } from './single-car/single-car.component';
+import { CarCardComponent } from './car-card/car-card.component';
+import { AllCarsComponent } from './all-cars/all-cars.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [			
     AppComponent,
     TopbarComponent,
     SlideshowComponent,
     NewOffersComponent,
     AddNewCarComponent,
     HomepageMainComponent,
-      SingleCarComponent
+      SingleCarComponent,
+      CarCardComponent,
+      AllCarsComponent
    ],
   imports: [
     BrowserModule,

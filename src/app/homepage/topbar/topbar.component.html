@@ -4,8 +4,7 @@
     <li *ngIf="homepage">O NAS</li>
     <li *ngIf="homepage">NAJNOWSZE OFERTY</li>
     <li *ngIf="homepage">KONTAKT</li>
-    <li *ngIf="homepage">PRZEGLĄDAJ OFERTY</li>
-    <li *ngIf="!homepage">STRONA GŁÓWNA</li>
+    <li *ngIf="homepage" [routerLink]="['/cars']">PRZEGLĄDAJ OFERTY</li>
     <li *ngIf="!homepage">WRÓĆ DO OFERT</li>
   </ul>
   <span (click)=showSideMenu()><i class="fas fa-bars"></i></span>
@@ -17,7 +16,6 @@
     <li *ngIf="homepage">NAJNOWSZE OFERTY</li>
     <li *ngIf="homepage">KONTAKT</li>
     <li *ngIf="homepage">PRZEGLĄDAJ OFERTY</li>
-    <li *ngIf="!homepage">STRONA GŁÓWNA</li>
     <li *ngIf="!homepage">WRÓĆ DO OFERT</li>
   </ul>
 </div>

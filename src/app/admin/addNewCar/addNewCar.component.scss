@@ -102,7 +102,7 @@ input[type="file"] {
 
 .categories {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;                /* NEW */
   width: 900px;
 }
@@ -139,8 +139,8 @@ input[type="file"] {
     height: 150px !important;
     z-index: 1;
     cursor: pointer;
-    
-  
+
+
   }
 }
 .placeholder {

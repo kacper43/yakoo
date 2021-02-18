@@ -59,8 +59,8 @@ export class SingleCarComponent implements OnInit {
 
     this.galleryOptions = [
       {
-          width: '50vw',
-          height: '50vw',
+          width: '70vh',
+          height: '70vh',
           imageSize: NgxGalleryImageSize.Contain,
           thumbnailsColumns: 4,
           imageAnimation: NgxGalleryAnimation.Slide

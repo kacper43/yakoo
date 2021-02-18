@@ -76,7 +76,6 @@ export class CarsService {
 
         this.storage.upload(path, this.files[this.lastImageIndex]).snapshotChanges().pipe(
           finalize( () => {
-            debugger;
             fileRef.getDownloadURL().subscribe( (url) => {
               let docRef = this.database.collection('imagesURLs').doc(this.databaseID.toString());
               docRef.get().toPromise().then(docSnapshot => {
@@ -188,19 +187,23 @@ export class CarsService {
 
   getCarsFromServer() {
     let data = [];
-    this.database.collection('cars', ref => ref.orderBy('timestamp', 'desc')).get().toPromise().then((querySnapshot) => {
+    let allCars = new Subject<Car[]>();
+    let allCarsObs = allCars.asObservable();
+    this.database.collection('cars', ref => ref.where('isArchived', '==', false).orderBy('timestamp', 'desc')).get().toPromise().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         data.push(doc.data());
+        allCars.next(data);
+        console.log(data);
+
       })
     })
-    console.log(data);
+    return allCarsObs;
   }
-
   getFiniteCarsFromServer(count: number): Observable<Car[]>{
     let cars = new Subject<Car[]>();
     let carsObs = cars.asObservable();
     let data = [];
-    this.database.collection('cars', ref => ref.orderBy('timestamp', 'desc').limit(count)).get().toPromise().then((querySnapshot) => {
+    this.database.collection('cars', ref => ref.where('isArchived', '==', false).orderBy('timestamp', 'desc').limit(count)).get().toPromise().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         data.push(doc.data());
         cars.next(data);

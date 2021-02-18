@@ -4,7 +4,7 @@
     <div class="info">
       <div class="title">{{car.brand}} {{car.model}}</div>
       <div class="price">{{car.price}} zł</div>
-      <div class="flex-2-rows">  
+      <div class="flex-2-rows">
         <div><span>Rocznik: {{car.year}}</span></div>
         <div><span>Przebieg: {{car.odometer}} km</span></div>
         <div><span>Pojemność: {{car.engine}} cm<sup>3</sup></span></div>
@@ -15,11 +15,19 @@
         <div><span>Liczba drzwi: {{car.doorCount}}</span></div>
       </div>
     </div>
-
-
     <ngx-gallery class="gallery" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+    <br>
+
   </div>
   <div class="equipment">
-    costam
+    <h3>WYPOSAŻENIE</h3>
+    <span class="equipment-item" *ngFor="let item of car.equipment">
+      {{item}}
+    </span>
+
   </div>
+  <div class="description">
+    {{car.description}}
+  </div>
+
 </div>

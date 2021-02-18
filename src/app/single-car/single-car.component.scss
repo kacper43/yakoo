@@ -8,14 +8,23 @@
     margin-top: 8vh;
     display: flex;
     flex-direction: column;
+    margin-left: 10em;
+    margin-right: 10em;
 
     .head-section {
         display: flex;
+        justify-content: center;
 
         .gallery {
             margin: 1em;
             box-sizing: border-box;
+            z-index: 0;
         }
+    }
+
+    .equipment {
+      margin-top: 2em;
+      border: 1px solid grey;
     }
 }
 
@@ -51,7 +60,7 @@
     .flex-2-rows {
         display: flex;
         box-sizing: border-box;
-        flex-direction: column;
+        flex-direction: row;
         flex-grow: 1;
         width: 100%;
         flex-wrap: wrap;
@@ -66,13 +75,14 @@
             display: grid;
             place-items: center;
             width: 50%;
-            
-           
 
-            &:nth-child(even) {
-            border-left: 1px solid rgb(221, 221, 221);
-            }
-         
+
+
+
+            &:nth-child(odd) {
+              border-right: 1px solid rgb(221, 221, 221);
+              }
+
         }
     }
 }
