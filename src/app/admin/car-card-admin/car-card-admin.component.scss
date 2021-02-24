@@ -43,8 +43,7 @@ $color-darkred: #8d0202;
   }
 
   .badge {
-    padding: 0.5em;
-    margin-right: 0.5em;
+
     position: absolute;
     bottom: 5px;
     right: 5px;
@@ -52,25 +51,35 @@ $color-darkred: #8d0202;
   }
 
   .reserved {
+    padding: 0.5em;
+    margin-right: 0.5em;
     color: white;
     background-color: orangered;
+    display: inline-block;
   }
 
   .sold {
+    padding: 0.5em;
+    margin-right: 0.5em;
     color: white;
+    display: inline-block;
     background-color: darkred;
   }
 
-  .archived {
+  .inactive {
+    padding: 0.5em;
+    margin-right: 0.5em;
       color: white;
-      background-color: black;
-      transform: translateY(-100%);
+    display: inline-block;
+    background-color: black;
   }
 
   .active {
+    padding: 0.5em;
+    margin-right: 0.5em;
     color: white;
+    display: inline-block;
     background-color: green;
-    transform: translateY(-100%);
 }
   .car-info {
     padding: 1em;

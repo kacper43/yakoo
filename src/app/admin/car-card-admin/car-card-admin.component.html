@@ -1,13 +1,16 @@
-<div class="car" [routerLink]="['/admin/edit-car/', car.firebaseId]" [ngStyle]="{'pointer-events': car.status == 'sold' ? 'none' : null}">
-  <div *ngIf="car.status == 'sold'" class="card-sold"><span>SPRZEDANE</span></div>
+<div class="car" [routerLink]="['/edit-car/', car.firebaseId]" >
   <div class="img-container">
     <img src={{car.mainImgUrl}} alt="">
   </div>
   <div class="car-info">
     <div class="car-model">{{car.brand}} {{car.model}}</div>
     <div>{{car.year}} | {{car.odometer}} km | {{car.bodyType}}</div>
-    <div class="car-price">{{car.price}} zł | {{car.firebaseId}}</div>
-    <div *ngIf="car.status == 'reserved'" class="badge reserved">Zarezerwowane</div>
-    <div *ngIf="car.status == 'sold'" class="badge sold">Sold</div>
+    <div class="car-price">{{car.price}} zł</div>
+    <div class="badge">
+      <div *ngIf="car.status == 'reserved'" class="reserved">Zarezerwowane</div>
+      <div *ngIf="car.status == 'sold'" class="sold">SPRZEDANE</div>
+      <div *ngIf="!car.isArchived" class="active">AKTYWNE</div>
+      <div *ngIf="car.isArchived" class="inactive">NIEAKTYWNE</div>
+    </div>
   </div>
 </div>

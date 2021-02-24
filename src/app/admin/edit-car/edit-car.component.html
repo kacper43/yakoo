@@ -1,0 +1,127 @@
+<div class="container">
+  <form [formGroup]="carForm">
+    <h3>Edytuj samochód</h3>
+    <mat-form-field appearance="outline">
+      <mat-label>Marka</mat-label>
+      <input type="text" value="{{car.brand}}" formControlName="brand" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Model</mat-label>
+      <input type="text" value="{{car.model}}" formControlName="model" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Rocznik</mat-label>
+      <mat-select formControlName="year">
+        <mat-option *ngFor="let year of years" [value]="year">
+          {{year}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Rodzaj paliwa</mat-label>
+      <mat-select formControlName="fuelType">
+        <mat-option *ngFor="let fuel of fuelTypes" [value]="fuel">
+          {{fuel}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Moc [KM]</mat-label>
+      <input type="text" value="" matInput formControlName="horsePower">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Przebieg [km]</mat-label>
+      <input type="text" value="" matInput formControlName="odometer">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Pojemność [ccm]</mat-label>
+      <input type="text" value="" matInput formControlName="engine">
+    </mat-form-field>
+  <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Typ nadwozia</mat-label>
+      <mat-select formControlName="bodyType">
+        <mat-option *ngFor="let type of bodyTypes" [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Ilość drzwi</mat-label>
+      <input type="text" value="" matInput formControlName="doorCount">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Skrzynia biegów</mat-label>
+      <mat-select formControlName="gearbox">
+        <mat-option *ngFor="let gearbox of gearboxTypes" [value]="gearbox">
+          {{gearbox}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cena</mat-label>
+      <input type="text" value="" matInput formControlName="price">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Status pojazdu</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="active">Aktywny</mat-option>
+        <mat-option value="reserved">Zarezerwowany</mat-option>
+        <mat-option value="sold">Sprzedany</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Zarchiwizowany</mat-label>
+      <mat-select formControlName="isArchived">
+        <mat-option [value]="false">Nie</mat-option>
+        <mat-option [value]="true">Tak</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-chip-list">
+      <mat-label>Wyposażenie</mat-label>
+      <mat-chip-list #chipList aria-label="Equipment selection">
+        <mat-chip
+          *ngFor="let eq of equipment"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(eq)">
+          {{eq}}
+          <mat-icon matChipRemove *ngIf="removable"><i class="far fa-times-circle"></i></mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Wybierz lub wpisz element wyposażenia i zatwierdź klawiszem ENTER..."
+          #equipmentInput
+          [formControl]="equipmentCtrl"
+          [matAutocomplete]="autoEq"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+      <mat-autocomplete #autoEq="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let equ of filteredEquipment | async" [value]="equ">
+          {{equ}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Opis samochodu</mat-label>
+      <textarea rows="8" matInput formControlName="description" placeholder="Dodaj opis..." [value]=""></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="warn" (click)="updateCar()" [disabled]="this.carForm.invalid">Aktualizuj samochód</button>
+  </form>
+</div>

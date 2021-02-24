@@ -25,9 +25,13 @@ import { SingleCarComponent } from './single-car/single-car.component';
 import { CarCardComponent } from './car-card/car-card.component';
 import { AllCarsComponent } from './all-cars/all-cars.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { EditCarComponent } from './admin/edit-car/edit-car.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
-  declarations: [				
+  declarations: [
     AppComponent,
     TopbarComponent,
     SlideshowComponent,
@@ -40,6 +44,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
       SpinnerComponent,
       ShowAllCarsComponent,
       CarCardAdminComponent,
+      EditCarComponent,
+      LoginComponent
    ],
   imports: [
     BrowserModule,
@@ -48,6 +54,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    AngularFireAuthModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
@@ -58,7 +65,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     ReactiveFormsModule,
     NgxGalleryModule
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, AuthService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

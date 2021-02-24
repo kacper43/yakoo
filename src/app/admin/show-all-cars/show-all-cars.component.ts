@@ -2,6 +2,7 @@ import { CarsService } from 'src/app/services/cars.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Car } from 'src/app/models/car.model';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-show-all-cars',
@@ -10,8 +11,8 @@ import { Car } from 'src/app/models/car.model';
 })
 export class ShowAllCarsComponent implements OnInit {
 
-  constructor(private carsService: CarsService) { }
-  
+  constructor(private carsService: CarsService, private authService: AuthService) { }
+
   cars: Car[] = [];
   carsSub: Subscription;
   showSpinner = true;
@@ -24,4 +25,7 @@ export class ShowAllCarsComponent implements OnInit {
     })
   }
 
+  logout() {
+    this.authService.logout();
+  }
 }

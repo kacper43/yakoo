@@ -211,13 +211,29 @@ export class AddNewCarComponent implements OnInit {
   items=[0,1,2,3,4,5,6,7,8,9,10,11];
 
   drop(event: CdkDragDrop<any>) {
-    this.urls[event.previousContainer.data.index]=event.container.data.item
-    this.urls[event.container.data.index]=event.previousContainer.data.item
+    let buffer;
+    buffer = this.imagesOrder[event.previousContainer.data.index];
+    this.imagesOrder[event.previousContainer.data.index] = this.imagesOrder[event.container.data.index];
+    this.imagesOrder[event.container.data.index] = buffer;
+    console.log(this.imagesOrder);
+    this.carsService.setFilesOrder(this.imagesOrder);
+    this.urls[event.previousContainer.data.index]=event.container.data.item;
+    this.urls[event.container.data.index]=event.previousContainer.data.item;
+
+
   }
 
+  imagesOrder = [];
+
   upload($event: any){
-    this.carsService.setFilesArray($event.target.files);
+    //this.carsService.setFilesArray($event.target.files);
     this.filesHolder = $event.target.files;
+    this.carsService.setFilesArray(this.filesHolder);
+    for (let i = 0; i < this.filesHolder.length; i++) {
+      this.imagesOrder.push(i);
+    }
+    console.log(this.filesHolder);
+    console.log(this.urls);
     if(this.filesHolder) {
       this.imagesCount = this.filesHolder.length;
       for(let i = 0; i < this.imagesCount; i++) {
@@ -227,6 +243,8 @@ export class AddNewCarComponent implements OnInit {
         this.urls[i] = event.target.result;
         }
       }
+    console.log(this.urls);
+
     }
   }
 

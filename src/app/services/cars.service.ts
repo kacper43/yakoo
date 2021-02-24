@@ -23,6 +23,7 @@ export class CarsService {
   databaseID: string = '';
   lastImageIndex: number = 0;
   mainImageIndex: number = 0;
+  imagesOrder = [];
   models: string[] = ['Wybierz markę samochodu'];
   private modelsUpdated = new Subject<string[]>();
   private newCar: Car = {
@@ -61,6 +62,10 @@ export class CarsService {
     this.toastr.info("Załadowano " + this.files.length + " zdjęć", "Nowe pliki");
   }
 
+  setFilesOrder(order: number[]) {
+    this.imagesOrder = order;
+  }
+
   generateID(){
     this.databaseID = this.database.createId();
     this.newCar.firebaseId = this.databaseID;
@@ -74,7 +79,7 @@ export class CarsService {
     const path = `images/${this.databaseID}/${this.lastImageIndex}`;
         const fileRef = this.storage.ref(path);
 
-        this.storage.upload(path, this.files[this.lastImageIndex]).snapshotChanges().pipe(
+        this.storage.upload(path, this.files[this.imagesOrder[this.lastImageIndex]]).snapshotChanges().pipe(
           finalize( () => {
             fileRef.getDownloadURL().subscribe( (url) => {
               let docRef = this.database.collection('imagesURLs').doc(this.databaseID.toString());
@@ -196,7 +201,7 @@ export class CarsService {
             data.push(doc.data());
             allCars.next(data);
             console.log(data);
-    
+
           })
         })
         return allCarsObs;
@@ -207,16 +212,16 @@ export class CarsService {
             data.push(doc.data());
             allCars.next(data);
             console.log(data);
-    
+
           })
         })
         return allCarsObs;
         break;
-      default: 
+      default:
         console.error("Nie można zastosować filtru");
         return allCarsObs;
     }
-    
+
   }
 
   getCarsFromServerAdmin(): Observable<Car[]> {

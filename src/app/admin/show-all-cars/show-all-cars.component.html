@@ -1,5 +1,10 @@
+<div style="width: 100%; height: 60px; color: white; padding: 0.5em 1em; box-sizing: border-box; background: black; display: flex; justify-content: flex-end;">
+  <button mat-raised-button color="accent" [routerLink]="['/admin/add-new-car']">Dodaj ogłoszenie</button>
+
+  <button mat-raised-button color="warn" (click)="logout()">Wyloguj</button>
+</div>
 <div class="container">
-  <h3>OFERTY</h3>
+  <h3>MOJE OGŁOSZENIA</h3>
   <div class="offers">
     <app-spinner *ngIf="showSpinner"></app-spinner>
     <app-car-card-admin *ngFor="let car of cars" [car]="car"></app-car-card-admin>
