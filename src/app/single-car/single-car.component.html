@@ -2,10 +2,13 @@
 <div class="container">
   <app-spinner *ngIf="showSpinner"></app-spinner>
   <div class="head-section">
+    
+    <ngx-gallery class="gallery" [options]="galleryOptions" [images]="galleryImages">
+      <app-spinner *ngIf="showImagesSpinner"></app-spinner>
+    </ngx-gallery>
     <div class="info">
       <div class="title">{{car.brand}} {{car.model}}</div>
       <div class="price">{{car.price}} zł</div>
-      <div class="flex-2-rows">
         <div><span>Rocznik: {{car.year}}</span></div>
         <div><span>Przebieg: {{car.odometer}} km</span></div>
         <div><span>Pojemność: {{car.engine}} cm<sup>3</sup></span></div>
@@ -14,23 +17,21 @@
         <div><span>Skrzynia biegów: {{car.gearbox}}</span></div>
         <div><span>Typ nadwozia: {{car.bodyType}}</span></div>
         <div><span>Liczba drzwi: {{car.doorCount}}</span></div>
-      </div>
+     
     </div>
-    <ngx-gallery class="gallery" [options]="galleryOptions" [images]="galleryImages">
-      <app-spinner *ngIf="showImagesSpinner"></app-spinner>
-    </ngx-gallery>
     <br>
 
   </div>
+  <div class="line"></div>
   <div class="equipment">
     <h3>WYPOSAŻENIE</h3>
-    <span class="equipment-item" *ngFor="let item of car.equipment">
-      {{item}}
-    </span>
+    <div class="equip" *ngFor="let item of car.equipment">
+     <span><i class="fas fa-car-alt"></i>{{item}}</span> 
+    </div>
 
   </div>
-  <div class="description">
-    {{car.description}}
-  </div>
+  <div class="line"></div>
+
+  <div class="description" [innerHTML]="car.description"></div>
 
 </div>

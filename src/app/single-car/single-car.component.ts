@@ -47,6 +47,8 @@ export class SingleCarComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.carSubscription = this.showCarService.getCar(this.id).subscribe((fetchedCar) => {
       this.car = fetchedCar;
+      this.car.description = this.car.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
+      console.log(this.car.description);
       this.showSpinner = false;
     });
     this.photosSubscription = this.showCarService.getCarPhotos(this.id).subscribe((photosUrls) => {
@@ -68,7 +70,11 @@ export class SingleCarComponent implements OnInit {
           height: '70vh',
           imageSize: NgxGalleryImageSize.Contain,
           thumbnailsColumns: 4,
-          imageAnimation: NgxGalleryAnimation.Slide
+          imageAnimation: NgxGalleryAnimation.Slide,
+          previewCloseOnClick: true,
+          previewCloseOnEsc: true,
+          previewKeyboardNavigation: true,
+          previewAnimation: true
       },
       // max-width 800
       {

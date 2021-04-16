@@ -16,11 +16,11 @@ const routes: Routes = [
   { path: 'car/:id', component: SingleCarComponent},
   { path: 'cars', component: AllCarsComponent},
   { path: 'edit-car/:id', component: EditCarComponent, canActivate: [AuthGuard]},
-  { path: 'admin/cars', component: ShowAllCarsComponent, canActivate: [AuthGuard]},
+  { path: 'admin', component: ShowAllCarsComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule],
   providers: [AuthGuard]
 })

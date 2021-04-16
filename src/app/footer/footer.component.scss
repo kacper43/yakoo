@@ -1,0 +1,11 @@
+.footer {
+    min-height: 300px;
+    width: 100vw;
+    background: black;
+    color: white;
+    margin-top: 1em;
+    padding: 1em;
+    box-sizing: border-box;
+    display: grid;
+    place-content: center;
+}

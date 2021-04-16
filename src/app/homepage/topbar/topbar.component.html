@@ -7,7 +7,7 @@
     <li *ngIf="homepage" [routerLink]="['/cars']">PRZEGLĄDAJ OFERTY</li>
     <li *ngIf="!homepage">WRÓĆ DO OFERT</li>
   </ul>
-  <span (click)=showSideMenu()><i class="fas fa-bars"></i></span>
+  <span class="hamburger" (click)=showSideMenu()><i class="fas fa-bars"></i></span>
 </div>
 <div class="side-menu">
   <i (click)=hideSideMenu() class="far fa-window-close fa-2x"></i>

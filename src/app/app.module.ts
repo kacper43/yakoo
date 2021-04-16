@@ -29,9 +29,10 @@ import { EditCarComponent } from './admin/edit-car/edit-car.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthService } from './auth/auth.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     TopbarComponent,
     SlideshowComponent,
@@ -45,7 +46,8 @@ import { AuthService } from './auth/auth.service';
       ShowAllCarsComponent,
       CarCardAdminComponent,
       EditCarComponent,
-      LoginComponent
+      LoginComponent,
+      FooterComponent
    ],
   imports: [
     BrowserModule,

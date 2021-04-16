@@ -126,6 +126,7 @@ export class CarsService {
   addNewCar() {
     this.toastr.success("Przesyłanie zdjęć zakończone!");
     this.newCar.timestamp = new Date();
+    this.newCar.price = Number(this.newCar.price);
     this.database.collection('cars').doc(this.databaseID).set(this.newCar);
     this.toastr.info('Dodano nowy samochód');
     this.toastr.info('do nowego ogłoszenia', 'Za 5 sekund zostaniesz przeniesiony');
