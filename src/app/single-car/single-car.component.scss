@@ -60,7 +60,7 @@
     .title {
         font-weight: bolder;
         padding: 0.5em 1em;
-        color: black;   
+        color: black;
     }
 
     .price {
@@ -121,4 +121,18 @@
 
 .ngx-gallery-active {
     z-index: 10 !important;
+}
+
+.fa-times-circle:before {
+  transform: translateY(8vh) !important;
+}
+
+ngx-gallery-action {
+  i {
+    transform: translateY(8vh) !important;
+  }
+}
+
+.ngx-gallery-icon .ngx-gallery-icon-content {
+  transform: translateY(8vh) !important;
 }

@@ -1,21 +1,21 @@
 <div class="topbar">
-  <span class="logo">LOGO HERE</span>
+  <span class="logo" [routerLink]="['/']"> <img src="../../../assets/yakoo-long.png"> </span>
   <ul>
-    <li *ngIf="homepage">O NAS</li>
-    <li *ngIf="homepage">NAJNOWSZE OFERTY</li>
-    <li *ngIf="homepage">KONTAKT</li>
+    <li *ngIf="homepage" (click)="scroll('about')">O NAS</li>
+    <li *ngIf="homepage" (click)="scroll('new-offers')">NAJNOWSZE OFERTY</li>
+    <li *ngIf="homepage" (click)="scroll('contact')">KONTAKT</li>
     <li *ngIf="homepage" [routerLink]="['/cars']">PRZEGLĄDAJ OFERTY</li>
-    <li *ngIf="!homepage">WRÓĆ DO OFERT</li>
+    <li *ngIf="!homepage" [routerLink]="['/cars']">WRÓĆ DO OFERT</li>
   </ul>
   <span class="hamburger" (click)=showSideMenu()><i class="fas fa-bars"></i></span>
 </div>
 <div class="side-menu">
   <i (click)=hideSideMenu() class="far fa-window-close fa-2x"></i>
   <ul>
-    <li *ngIf="homepage">O NAS</li>
-    <li *ngIf="homepage">NAJNOWSZE OFERTY</li>
-    <li *ngIf="homepage">KONTAKT</li>
-    <li *ngIf="homepage">PRZEGLĄDAJ OFERTY</li>
-    <li *ngIf="!homepage">WRÓĆ DO OFERT</li>
+    <li *ngIf="homepage" (click)="scrollMobile('about')">O NAS</li>
+    <li *ngIf="homepage" (click)="scrollMobile('new-offers')">NAJNOWSZE OFERTY</li>
+    <li *ngIf="homepage" (click)="scrollMobile('contact')">KONTAKT</li>
+    <li *ngIf="homepage" [routerLink]="['/cars']">PRZEGLĄDAJ OFERTY</li>
+    <li *ngIf="!homepage" [routerLink]="['/cars']">WRÓĆ DO OFERT</li>
   </ul>
 </div>

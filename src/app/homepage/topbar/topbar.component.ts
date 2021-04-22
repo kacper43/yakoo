@@ -15,6 +15,17 @@ export class TopbarComponent implements OnInit {
 
   }
 
+  scroll(id) {
+    let element = document.getElementById(id);
+    element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+  }
+
+  scrollMobile(id) {
+    let element = document.getElementById(id);
+    element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+    this.hideSideMenu();
+  }
+
   showSideMenu() {
     let sideMenu = document.querySelector('.side-menu') as HTMLElement;
     sideMenu.style.opacity = '1';
