@@ -37,13 +37,24 @@ $color-darkred: #8d0202;
     }
   }
 
+}
+
   @media (max-width: 1200px) {
-    .offers {
-      display: flex;
-      flex-direction: column;
+    .container {
+      text-align: center;
+      padding: 0 5px;
+      margin-bottom: 8vh;
+      width: 100%;
+      box-sizing: border-box;
+    
+      .offers {
+        display: flex;
+        flex-direction: column;
+      }
+  
     }
 
+    
   }
 
-}
 

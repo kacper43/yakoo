@@ -1,21 +1,29 @@
 <div class="topbar">
   <span class="logo" [routerLink]="['/']"> <img src="../../../assets/yakoo-long.png"> </span>
   <ul>
-    <li *ngIf="homepage" (click)="scroll('about')">O NAS</li>
-    <li *ngIf="homepage" (click)="scroll('new-offers')">NAJNOWSZE OFERTY</li>
-    <li *ngIf="homepage" (click)="scroll('contact')">KONTAKT</li>
-    <li *ngIf="homepage" [routerLink]="['/cars']">PRZEGLĄDAJ OFERTY</li>
-    <li *ngIf="!homepage" [routerLink]="['/cars']">WRÓĆ DO OFERT</li>
+    <li *ngIf="pageType == 'homepage'" (click)="scroll('about')">O NAS</li>
+    <li *ngIf="pageType == 'homepage'" (click)="scroll('new-offers')">NAJNOWSZE OFERTY</li>
+    <li *ngIf="pageType == 'homepage'" (click)="scroll('contact')">KONTAKT</li>
+    <li *ngIf="pageType == 'homepage'" class="back-to-offers" [routerLink]="['/cars']">PRZEGLĄDAJ OFERTY</li>
+    <li *ngIf="pageType == 'cars-list' || pageType == 'car'" [routerLink]="['/']">STRONA GŁÓWNA</li>
+    <a href="/#about" ><li *ngIf="pageType == 'cars-list' || pageType == 'car'" >O NAS</li></a>
+    <a href="/#new-offers" ><li *ngIf="pageType == 'cars-list' || pageType == 'car'" >NAJNOWSZE OFERTY</li></a>
+    <a href="/#contact" ><li *ngIf="pageType == 'cars-list' || pageType == 'car'" >KONTAKT</li></a>
+    <li *ngIf="pageType == 'car'" class="back-to-offers" [routerLink]="['/cars']">WRÓĆ DO OFERT</li>
   </ul>
   <span class="hamburger" (click)=showSideMenu()><i class="fas fa-bars"></i></span>
 </div>
 <div class="side-menu">
   <i (click)=hideSideMenu() class="far fa-window-close fa-2x"></i>
   <ul>
-    <li *ngIf="homepage" (click)="scrollMobile('about')">O NAS</li>
-    <li *ngIf="homepage" (click)="scrollMobile('new-offers')">NAJNOWSZE OFERTY</li>
-    <li *ngIf="homepage" (click)="scrollMobile('contact')">KONTAKT</li>
-    <li *ngIf="homepage" [routerLink]="['/cars']">PRZEGLĄDAJ OFERTY</li>
-    <li *ngIf="!homepage" [routerLink]="['/cars']">WRÓĆ DO OFERT</li>
+    <li *ngIf="pageType == 'homepage'" (click)="scrollMobile('about')">O NAS</li>
+    <li *ngIf="pageType == 'homepage'" (click)="scrollMobile('new-offers')">NAJNOWSZE OFERTY</li>
+    <li *ngIf="pageType == 'homepage'" (click)="scrollMobile('contact')">KONTAKT</li>
+    <li *ngIf="pageType == 'homepage'" class="back-to-offers" [routerLink]="['/cars']">PRZEGLĄDAJ OFERTY</li>
+    <li *ngIf="pageType == 'cars-list' || pageType == 'car'" [routerLink]="['/']">STRONA GŁÓWNA</li>
+    <a href="/#about" ><li *ngIf="pageType == 'cars-list' || pageType == 'car'" >O NAS</li></a>
+    <a href="/#new-offers" ><li *ngIf="pageType == 'cars-list' || pageType == 'car'" >NAJNOWSZE OFERTY</li></a>
+    <a href="/#contact" ><li *ngIf="pageType == 'cars-list' || pageType == 'car'" >KONTAKT</li></a>
+    <li *ngIf="pageType == 'car'" class="back-to-offers" [routerLink]="['/cars']">WRÓĆ DO OFERT</li>
   </ul>
 </div>

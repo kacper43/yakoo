@@ -1,25 +1,29 @@
+<app-topbar [pageType]="pageType"></app-topbar>
 <div class="container">
-  <mat-form-field appearance="outline">
-    <mat-label>Sortowanie</mat-label>
-    <mat-select [(value)]="filterType" (selectionChange)=filterChanged()>
-      <mat-option value="timestamp">Data dodania</mat-option>
-      <mat-option value="price">Cena</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field *ngIf="filterType == 'timestamp'" appearance="outline">
-    <mat-label>Sortowanie</mat-label>
-    <mat-select [(value)]="filterDirection" (selectionChange)=filterChanged()>
-      <mat-option value="desc">Od najnowszych</mat-option>
-      <mat-option value="asc">Od najstarszych</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field *ngIf="filterType == 'price'" appearance="outline">
-    <mat-label>Sortowanie</mat-label>
-    <mat-select [(value)]="filterDirection" (selectionChange)=filterChanged()>
-      <mat-option value="desc">Od najdroższych</mat-option>
-      <mat-option value="asc">Od najtańszych</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="filters" id="filter-box">
+    <mat-form-field appearance="outline">
+      <mat-label>Sortowanie</mat-label>
+      <mat-select [(value)]="filterType" (selectionChange)=filterChanged()>
+        <mat-option value="timestamp">Data dodania</mat-option>
+        <mat-option value="price">Cena</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="filterType == 'timestamp'" appearance="outline">
+      <mat-label>Sortowanie</mat-label>
+      <mat-select [(value)]="filterDirection" (selectionChange)=filterChanged()>
+        <mat-option value="desc">Od najnowszych</mat-option>
+        <mat-option value="asc">Od najstarszych</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="filterType == 'price'" appearance="outline">
+      <mat-label>Sortowanie</mat-label>
+      <mat-select [(value)]="filterDirection" (selectionChange)=filterChanged()>
+        <mat-option value="desc">Od najdroższych</mat-option>
+        <mat-option value="asc">Od najtańszych</mat-option>
+      </mat-select>
+    </mat-form-field>  
+  </div>
+  <div class="filter-badge" id="filter-button" (click)="toggleFilters()" >{{filterBadgeText}}</div>
   <h3>OFERTY</h3>
   <div class="offers">
     <app-spinner *ngIf="showSpinner"></app-spinner>

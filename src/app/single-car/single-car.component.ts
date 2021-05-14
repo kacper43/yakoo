@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Car } from '../models/car.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryImageSize, NgxGalleryOptions } from 'ngx-gallery-9';
+import { HammerJS } from 'hammerjs';
 
 @Component({
   selector: 'app-single-car',
@@ -35,7 +36,7 @@ export class SingleCarComponent implements OnInit {
     gearbox: ''
   };
   photos: string[];
-  homepage = false;
+  pageType = 'car';
   showSpinner = true;
   showImagesSpinner = true;
 
@@ -74,23 +75,23 @@ export class SingleCarComponent implements OnInit {
           previewCloseOnClick: true,
           previewCloseOnEsc: true,
           previewKeyboardNavigation: true,
-          previewAnimation: true
+          previewAnimation: true,
+          imageSwipe: true,
+          thumbnailsSwipe: true
+
       },
       // max-width 800
       {
-          breakpoint: 800,
-          width: '100%',
-          height: '600px',
+          breakpoint: 1200,
+          width: '100vw',
+          height: '100vw',
           imagePercent: 80,
           thumbnailsPercent: 20,
           thumbnailsMargin: 20,
-          thumbnailMargin: 20
-      },
-      // max-width 400
-      {
-          breakpoint: 400,
-          preview: false
+          thumbnailMargin: 20,
+          imageSwipe: true
       }
+      
     ];
 
 

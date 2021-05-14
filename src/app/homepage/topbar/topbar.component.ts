@@ -8,7 +8,7 @@ import { CarsService } from 'src/app/services/cars.service';
 })
 export class TopbarComponent implements OnInit {
 
-  @Input() homepage;
+  @Input() pageType;
   constructor(private carsService: CarsService) { }
 
   ngOnInit() {

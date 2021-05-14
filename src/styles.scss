@@ -12,3 +12,7 @@ html, body {
 .ngx-gallery-close {
   transform: translateY(8vh) !important;
 }
+
+::ng-deep .mat-focused {
+  color: pink !important;
+}

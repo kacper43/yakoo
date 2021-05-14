@@ -13,6 +13,9 @@ export class AllCarsComponent implements OnInit {
 
   constructor(private carsService: CarsService) { }
 
+  pageType = 'cars-list';
+  filterBadgeText = 'POKAŻ FILTRY';
+  filterShown = false;
   cars: Car[] = [];
   carsSub: Subscription;
   filterType = 'timestamp';
@@ -37,5 +40,28 @@ export class AllCarsComponent implements OnInit {
         this.showSpinner = false;
         //console.log(this.cars);
       })
+    }
+
+    toggleFilters() {
+      this.filterShown = !this.filterShown;
+
+      let filters = document.getElementById('filter-box');
+      let filtersButton = document.getElementById('filter-button');
+      if(this.filterShown) {
+        filters.style.transform = "translateY(8vh)";
+        filters.style.background = "rgba(255, 255, 255, 1)";
+        filters.style.paddingTop = "2vh";
+        filters.style.paddingBottom = "2vh";
+        filtersButton.style.transform = "translate(-50%, 10vh)"
+        this.filterBadgeText = "UKRYJ FILTRY";
+      } else {
+        filters.style.transform = "translateY(0)";
+        filters.style.background = "rgba(255, 255, 255, 0)";
+        filters.style.paddingTop = "0";
+        filters.style.paddingBottom = "0";
+        filtersButton.style.transform = "translate(-50%, 0)";
+        this.filterBadgeText = "POKAŻ FILTRY";
+      }
+      
     }
 }

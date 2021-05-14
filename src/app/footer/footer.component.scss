@@ -1,11 +1,115 @@
 .footer {
-    min-height: 300px;
     width: 100vw;
-    background: black;
-    color: white;
     margin-top: 1em;
     padding: 1em;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    -webkit-box-shadow: 0px 0px 14px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 14px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 14px 2px rgba(0,0,0,0.75);
+    box-sizing: border-box;
+    font-family: 'Ubuntu Condensed', sans-serif;
+
+
+    .contact {
+        display: flex;
+        box-sizing: border-box;
+        padding: 0 4em;
+
+        .contact-data {
+            width: 50%;
+            display: grid;
+            place-content: center;
+
+            h2 {
+                color: darkred;
+            }
+
+            h4 {
+                a {
+                    color: inherit;
+                    text-decoration: none;
+                }
+                i {
+                    margin-right: 0.5em;
+                }
+            }
+
+        }
+
+        .logo {
+            width: 50%;
+            display: grid;
+            place-content: center;
+
+            img {
+                max-width: 100%;
+                height: auto;
+                max-height: 300px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .footer {
+        padding: 0;
+
+        .contact {
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding: 0;
+            place-items: center;
+    
+            .contact-data {
+                width: 100%;
+                display: grid;
+                place-content: center;
+                text-align: center;
+                
+                h2 {
+                    color: darkred;
+                }
+    
+                h4 {
+                    a {
+                        color: inherit;
+                        text-decoration: none;
+                    }
+                    i {
+                        margin-right: 0.5em;
+                    }
+                }
+    
+            }
+    
+            .logo {
+                width: 100%;
+                display: grid;
+                place-content: center;
+                text-align: center;
+
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    max-height: 300px;
+                }
+            }
+        }
+    }
+    
+    
+}
+.yakoo {
+    background-color: black;
+    color: grey;
     display: grid;
     place-content: center;
+    padding: 2em 0;
+    font-family: 'Ubuntu Condensed', sans-serif;
+
 }
+
