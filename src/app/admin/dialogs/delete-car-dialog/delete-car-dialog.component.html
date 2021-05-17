@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Usuwanie ogłoszenia</h1>
+<div mat-dialog-content style="font-family: 'Roboto', sans-serif;">
+  Czy na pewno chcesz trwale usunąć samochód: <br>
+ <b> {{car.brand}} {{car.model}} z {{car.year}} roku? </b><br><br>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="true" (click)="yes()" color="warn">Tak</button>
+  <button mat-raised-button [mat-dialog-close]="true" (click)="no()" >Nie</button>
+</div>

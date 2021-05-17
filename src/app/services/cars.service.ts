@@ -134,10 +134,50 @@ export class CarsService {
     setTimeout( () => {
       this.router.navigate(['/car/' + this.databaseID]);
     }, 5000);
-
-
   }
 
+  deleteCar(carId: string): Observable<boolean> {
+    let isCarDeleted = new Subject<boolean>();
+    let observable = isCarDeleted.asObservable();
+    this.database.collection('cars').doc(carId).delete().then(() => {
+      console.log('Car deleted from CARS');
+      this.database.collection('imagesURLs').doc(carId).delete().then(() => {
+        console.log('Images urls deleted from IMAGESURLs');
+        let directoryPath = `images/${carId}`;
+        let ref = this.storage.ref(directoryPath);
+        ref.listAll().subscribe(dir => {
+          dir.items.forEach(fileRef => {
+            let dirRef = this.storage.ref(fileRef.fullPath);
+            dirRef.getDownloadURL().toPromise().then(url => {
+              let imageRef = this.storage.refFromURL(url);
+              imageRef.delete().toPromise().then(() => {
+                console.log("Zdjęcie zostało usunięte");
+              }).catch(error => {
+                console.log(error);
+                this.toastr.error("Błąd podczas usuwania zdjęcia");
+                isCarDeleted.next(false);
+                return observable;
+              });
+            }).catch(error => {
+              console.log(error);
+              this.toastr.error("Błąd podczas usuwania ogłoszenia");
+              isCarDeleted.next(false);
+              return observable;
+            });
+          });
+          this.toastr.success("Usunięto ogłoszenie");
+          isCarDeleted.next(true);
+        });
+      });
+    });
+    return observable;
+  }
+
+  deleteFile(pathToFile, fileName) {
+    const ref = this.storage.ref(pathToFile);
+    const childRef = ref.child(fileName);
+    childRef.delete()
+  }
   setNewCar(car: Car): Observable<boolean> {
     this.newCar.fuelType = car.fuelType;
     this.newCar.equipment = car.equipment;

@@ -4,6 +4,7 @@ $color-red: #d40101;
 $color-darkred: #8d0202;
 
 
+
 .car {
   position: relative;
   box-sizing: border-box;
@@ -19,6 +20,10 @@ $color-darkred: #8d0202;
   &:hover {
     transform: scale(1.05);
     z-index: 20;
+
+    .delete-btn {
+      display: inline-block;
+    }
   }
 
   .card-sold {
@@ -80,7 +85,25 @@ $color-darkred: #8d0202;
     color: white;
     display: inline-block;
     background-color: green;
-}
+  }
+
+  .delete-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background: darkred;
+    display: none;
+    padding: 0.5em;
+    margin: 0.5em;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 500;
+
+    &:hover {
+      background-color: red;
+    }
+  }
   .car-info {
     padding: 1em;
     background: $color-white;

@@ -1,4 +1,4 @@
-import { CarCardAdminComponent } from './admin/car-card-admin/car-card-admin.component';
+import { CarCardAdminComponent, DeleteCarDialogComponent } from './admin/car-card-admin/car-card-admin.component';
 import { ShowAllCarsComponent } from './admin/show-all-cars/show-all-cars.component';
 import { SlideshowComponent } from './homepage/slideshow/slideshow.component';
 import { TopbarComponent } from './homepage/topbar/topbar.component';
@@ -32,7 +32,7 @@ import { AuthService } from './auth/auth.service';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     TopbarComponent,
     SlideshowComponent,
@@ -47,7 +47,8 @@ import { FooterComponent } from './footer/footer.component';
       CarCardAdminComponent,
       EditCarComponent,
       LoginComponent,
-      FooterComponent
+      FooterComponent,
+      DeleteCarDialogComponent
    ],
   imports: [
     BrowserModule,
@@ -68,6 +69,6 @@ import { FooterComponent } from './footer/footer.component';
     NgxGalleryModule
   ],
   providers: [AngularFirestore, AuthService, AngularFireAuth],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

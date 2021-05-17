@@ -230,8 +230,10 @@ export class AddNewCarComponent implements OnInit {
     this.filesHolder = $event.target.files;
     this.carsService.setFilesArray(this.filesHolder);
     for (let i = 0; i < this.filesHolder.length; i++) {
-      this.imagesOrder.push(i);
+      this.imagesOrder[i] = i;
     }
+    console.log(this.imagesOrder);
+    this.carsService.setFilesOrder(this.imagesOrder);
     console.log(this.filesHolder);
     console.log(this.urls);
     if(this.filesHolder) {

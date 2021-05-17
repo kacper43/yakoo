@@ -1,4 +1,8 @@
-<div class="car" [routerLink]="['/edit-car/', car.firebaseId]" >
+<div class="car" (click)=editCar() >
+  <span (click)="$event.stopPropagation()">
+    <div class="delete-btn" (click)="deleteCarDialog()">USUŃ OGŁOSZENIE</div>
+  </span>
+
   <div class="img-container">
     <img src={{car.mainImgUrl}} alt="">
   </div>
