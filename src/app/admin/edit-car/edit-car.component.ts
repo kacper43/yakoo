@@ -18,7 +18,23 @@ export class EditCarComponent implements OnInit {
 
   id: string = '';
   carSub: Subscription;
-  carForm: FormGroup;
+  carForm: FormGroup = this.formBuilder.group({
+    firebaseId: '',
+    year: [0, Validators.required],
+    brand: ['', Validators.required],
+    model: ['', Validators.required],
+    fuelType: '',
+    horsePower: 0,
+    odometer: 0,
+    engine: 0,
+    bodyType: '',
+    doorCount: 0,
+    gearbox: '',
+    price: 0,
+    description: '',
+    isArchived: false,
+    status: ''
+  });
   car: Car;
   brands: string[];
   models: string[] = [];
@@ -82,7 +98,8 @@ export class EditCarComponent implements OnInit {
         description: this.car.description,
         isArchived: this.car.isArchived,
         status: this.car.status
-      })
+      });
+
       this.equipment = this.car.equipment;
     });
 

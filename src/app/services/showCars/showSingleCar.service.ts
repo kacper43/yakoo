@@ -52,7 +52,7 @@ export class ShowSingleCarService {
     this.database.collection('cars').doc(id).set(car).then(res => {
       this.toastr.success("Zaktualizowano ogłoszenie", "Operacja zakończona pomyślnie")
       setTimeout( () => {
-        this.router.navigate(['/admin/cars']);
+        this.router.navigate(['/admin']);
       }, 3000);
 
     });

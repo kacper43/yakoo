@@ -94,6 +94,7 @@ export class AddNewCarComponent implements OnInit {
     for(let i = 1; i < 40; i++) {
       this.years[i] = this.years[i-1] - 1;
     }
+    this.allEquipment.sort();
     //console.log(this.years);
     this.brands = this.carsService.getCarBrands();
     this.carForm = this.formBuilder.group({

@@ -28,7 +28,7 @@ export class AuthService {
     this.afAuth.signInWithEmailAndPassword(authData.email, authData.password).then( result => {
       this.isAuthenticated = true;
       this.authChange.next(true);
-      this.router.navigate(['/admin/cars']);
+      this.router.navigate(['/admin']);
       localStorage.setItem('loggedUser', authData.email);
     });
   }

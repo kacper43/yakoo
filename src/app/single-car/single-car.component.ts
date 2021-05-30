@@ -50,6 +50,7 @@ export class SingleCarComponent implements OnInit {
       this.car = fetchedCar;
       this.car.description = this.car.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
       console.log(this.car.description);
+      this.car.equipment.sort();
       this.showSpinner = false;
     });
     this.photosSubscription = this.showCarService.getCarPhotos(this.id).subscribe((photosUrls) => {
@@ -91,7 +92,7 @@ export class SingleCarComponent implements OnInit {
           thumbnailMargin: 20,
           imageSwipe: true
       }
-      
+
     ];
 
 
